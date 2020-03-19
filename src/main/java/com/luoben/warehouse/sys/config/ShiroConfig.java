@@ -1,7 +1,7 @@
 package com.luoben.warehouse.sys.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
-import com.luoben.warehouse.sys.pojo.ShiroPrpperties;
+import com.luoben.warehouse.sys.common.ShiroPrpperties;
 import com.luoben.warehouse.sys.realm.UserRealm;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;

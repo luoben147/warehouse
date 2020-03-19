@@ -1,4 +1,4 @@
-package com.luoben.warehouse.sys.pojo;
+package com.luoben.warehouse.sys.common;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
