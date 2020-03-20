@@ -45,7 +45,7 @@ mybatis-plus:
        #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
        #field-strategy: NOT_EMPTY
     # mybatis-plus LOGO
-    banner: true
+    banner: false
   configuration:
       #控制台打印完整带参数SQL语句
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
