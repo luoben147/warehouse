@@ -2,6 +2,9 @@ package com.luoben.warehouse.sys.mapper;
 
 import com.luoben.warehouse.sys.domain.Permission;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -13,4 +16,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface PermissionMapper extends BaseMapper<Permission> {
 
+    Integer getMaxOrderNum();
+
+    void deleteRolePermissionByPid(@Param("id") Serializable id);
 }
