@@ -1,10 +1,9 @@
 package com.luoben.warehouse.sys.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.luoben.warehouse.sys.domain.Dept;
 import com.luoben.warehouse.sys.mapper.DeptMapper;
 import com.luoben.warehouse.sys.service.DeptService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,13 +24,13 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements De
     private DeptMapper deptMapper;
 
     @Override
-    public Dept getOne(Wrapper<Dept> queryWrapper) {
-        return super.getOne(queryWrapper);
+    public Dept getById(Serializable id) {
+        return super.getById(id);
     }
 
     @Override
-    public boolean update(Dept entity, Wrapper<Dept> updateWrapper) {
-        return super.update(entity,updateWrapper);
+    public boolean updateById(Dept entity) {
+        return super.updateById(entity);
     }
 
     @Override
