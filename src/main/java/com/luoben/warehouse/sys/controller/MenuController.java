@@ -8,16 +8,14 @@ import com.luoben.warehouse.sys.common.*;
 import com.luoben.warehouse.sys.domain.Permission;
 import com.luoben.warehouse.sys.domain.User;
 import com.luoben.warehouse.sys.service.PermissionService;
+import com.luoben.warehouse.sys.service.RoleService;
 import com.luoben.warehouse.sys.vo.PermissionVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <p>
@@ -34,6 +32,9 @@ public class MenuController {
     @Autowired
     private PermissionService permissionService;
 
+    @Autowired
+    private RoleService roleService;
+
     @RequestMapping("/loadIndexLeftMenuJson")
     public DataGridView loadIndexLeftMenuJson(PermissionVo permissionVo){
         //查询所有菜单
@@ -49,7 +50,25 @@ public class MenuController {
             list = permissionService.list(wrapper);
         }else {
             //根据用户ID+角色+权限查询
-            list = permissionService.list(wrapper);
+            Integer uid=user.getId();
+            //1.根据用户id查询角色
+            List<Integer> curUserRoleIds = roleService.queryUserRoleIdsByUid(uid);
+            //2.根据角色ID查询菜单ID和权限ID
+            //使用set去重
+            Set<Integer> pids = new HashSet<>();
+            for (Integer rid : curUserRoleIds) {
+                //根据角色ID查询菜单ID和权限ID
+                List<Integer> permissionIds = roleService.queryRolePermissionIdsByRid(rid);
+                //将菜单ID和权限ID放入Set中去重
+                pids.addAll(permissionIds);
+            }
+            //3.根据角色ID查询权限
+            if (pids.size()>0){
+                wrapper.in("id",pids);
+                list = permissionService.list(wrapper);
+            }else {
+                list=new ArrayList<>();
+            }
         }
 
         //构建menu树

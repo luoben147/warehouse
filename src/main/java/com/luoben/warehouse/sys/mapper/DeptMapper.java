@@ -15,5 +15,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DeptMapper extends BaseMapper<Dept> {
 
-    Dept getLastOneDept();
+    Integer getMaxOrderNum();
 }

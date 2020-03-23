@@ -71,11 +71,11 @@ public class DeptController {
     @RequestMapping("/loadDeptMaxOrderNum")
     public Map<String,Object> loadDeptMaxOrderNum(){
         Map<String,Object> map=new HashMap<>();
-        Dept dept = deptService.getLastOneDept();
-        if(dept!=null){
-            map.put("value",dept.getOrdernum()+1);
-        }else {
-            map.put("value",1);
+        Integer  maxOrderNum= deptService.getMaxOrderNum();
+        if (maxOrderNum != null) {
+            map.put("value", maxOrderNum + 1);
+        } else {
+            map.put("value", 1);
         }
         return map;
     }

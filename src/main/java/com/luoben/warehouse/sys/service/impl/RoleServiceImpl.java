@@ -37,7 +37,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
      * @return
      */
     @Override
-    public List<Integer> queryRolePermissionIdsByRid(Long roleId) {
+    public List<Integer> queryRolePermissionIdsByRid(Integer roleId) {
         return getBaseMapper().queryRolePermissionIdsByRid(roleId);
     }
 
@@ -56,5 +56,15 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
                 roleMapper.saveRolePermission(rid, pid);
             }
         }
+    }
+
+    /**
+     * 查询当前用户拥有的角色ID集合
+     * @param id
+     * @return
+     */
+    @Override
+    public List<Integer> queryUserRoleIdsByUid(Integer id) {
+        return this.getBaseMapper().queryUserRoleIdsByUid(id);
     }
 }

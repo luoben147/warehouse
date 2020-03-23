@@ -20,7 +20,7 @@ public interface RoleService extends IService<Role> {
      * @param roleId
      * @return
      */
-    List<Integer> queryRolePermissionIdsByRid(Long roleId);
+    List<Integer> queryRolePermissionIdsByRid(Integer roleId);
 
     /**
      * 保存角色和菜单权限之间的关系
@@ -28,4 +28,11 @@ public interface RoleService extends IService<Role> {
      * @param ids
      */
     void saveRolePermission(Integer rid, Integer[] ids);
+
+    /**
+     * 查询当前用户拥有的角色ID集合
+     * @param id
+     * @return
+     */
+    List<Integer> queryUserRoleIdsByUid(Integer id);
 }

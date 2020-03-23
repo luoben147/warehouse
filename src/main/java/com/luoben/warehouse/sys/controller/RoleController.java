@@ -104,7 +104,7 @@ public class RoleController {
      *
      */
     @RequestMapping("initPermissionByRoleId")
-    public DataGridView initPermissionByRoleId(Long roleId){
+    public DataGridView initPermissionByRoleId(Integer roleId){
         //查询所有可用的菜单和权限
         QueryWrapper<Permission> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("available",Constast.AVAILABLE_TRUE);

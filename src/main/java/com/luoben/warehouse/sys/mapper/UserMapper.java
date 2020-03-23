@@ -13,4 +13,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface UserMapper extends BaseMapper<User> {
 
+    /**
+     * 加载最大的排序码
+     * @return
+     */
+    Integer getMaxOrderNum();
 }
