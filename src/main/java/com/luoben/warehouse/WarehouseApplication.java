@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan(basePackages = {"com.luoben.warehouse.sys.mapper"})
+@MapperScan(basePackages = {"com.luoben.warehouse.*.mapper"})
 public class WarehouseApplication {
 
     public static void main(String[] args) {

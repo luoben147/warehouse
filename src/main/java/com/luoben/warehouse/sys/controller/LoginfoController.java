@@ -73,7 +73,6 @@ public class LoginfoController {
      */
     @RequestMapping("/batchDeleteLoginfo")
     public ResultObj batchDeleteLoginfo(Integer[] ids){
-        System.out.println("ids= "+Arrays.toString(ids));
         try {
             loginfoService.removeByIds(Arrays.asList(ids));
             return ResultObj.DELETE_SUCCESS;
