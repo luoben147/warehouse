@@ -61,6 +61,7 @@ shiro:
   - /index.html*
   - /sys/toLogin*
   - /login/login*
+  - /login/getCode
   - /resources/**
   #登陆地址
   login-url: /index.html
