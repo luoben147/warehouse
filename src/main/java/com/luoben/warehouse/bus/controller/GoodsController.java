@@ -122,6 +122,40 @@ public class GoodsController {
         }
     }
 
+    /**
+     * 加载所有可用的供应商
+     */
+    @RequestMapping("loadAllGoodsForSelect")
+    public DataGridView loadAllGoodsForSelect() {
+        QueryWrapper<Goods> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("available", Constast.AVAILABLE_TRUE);
+        List<Goods> list = this.goodsService.list(queryWrapper);
+        for (Goods goods : list) {
+            Provider provider = this.providerService.getById(goods.getProviderid());
+            if(null!=provider) {
+                goods.setProvidername(provider.getProvidername());
+            }
+        }
+        return new DataGridView(list);
+    }
+
+    /**
+     *根据供应商ID查询商品信息
+     */
+    @RequestMapping("loadGoodsByProviderId")
+    public DataGridView loadGoodsByProviderId(Integer providerid) {
+        QueryWrapper<Goods> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("available", Constast.AVAILABLE_TRUE);
+        queryWrapper.eq(providerid!=null, "providerid", providerid);
+        List<Goods> list = this.goodsService.list(queryWrapper);
+        for (Goods goods : list) {
+            Provider provider = this.providerService.getById(goods.getProviderid());
+            if(null!=provider) {
+                goods.setProvidername(provider.getProvidername());
+            }
+        }
+        return new DataGridView(list);
+    }
 
 }
 

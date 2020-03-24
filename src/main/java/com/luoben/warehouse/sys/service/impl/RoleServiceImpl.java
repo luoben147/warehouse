@@ -19,6 +19,7 @@ import java.util.List;
  * @since 2020-03-22
  */
 @Service
+@Transactional
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements RoleService {
 
     @Transactional
