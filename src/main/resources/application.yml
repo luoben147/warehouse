@@ -69,3 +69,6 @@ shiro:
   #拦截的路径
   authc-ulrs:
   - /**
+
+#配置文件上传路径
+filepath: E:/upload/

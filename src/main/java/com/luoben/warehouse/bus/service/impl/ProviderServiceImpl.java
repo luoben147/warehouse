@@ -1,8 +1,8 @@
 package com.luoben.warehouse.bus.service.impl;
 
-import com.luoben.warehouse.bus.domain.Customer;
-import com.luoben.warehouse.bus.mapper.CustomerMapper;
-import com.luoben.warehouse.bus.service.CustomerService;
+import com.luoben.warehouse.bus.domain.Provider;
+import com.luoben.warehouse.bus.mapper.ProviderMapper;
+import com.luoben.warehouse.bus.service.ProviderService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,20 +16,20 @@ import java.util.Collection;
  * </p>
  *
  * @author luoben
- * @since 2020-03-23
+ * @since 2020-03-24
  */
 @Service
 @Transactional
-public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> implements CustomerService {
+public class ProviderServiceImpl extends ServiceImpl<ProviderMapper, Provider> implements ProviderService {
 
     @Override
-    public boolean save(Customer entity) {
+    public boolean save(Provider entity) {
         return super.save(entity);
     }
 
     @Override
-    public boolean updateById(Customer entity) {
-        return super.updateById(entity);
+    public Provider getById(Serializable id) {
+        return super.getById(id);
     }
 
     @Override
