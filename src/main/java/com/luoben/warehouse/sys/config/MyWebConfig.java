@@ -35,5 +35,6 @@ public class MyWebConfig implements WebMvcConfigurer {
         registry.addViewController("bus/toInportManager").setViewName("business/inport/inportManager");
         registry.addViewController("bus/toOutportManager").setViewName("business/outport/outportManager");
         registry.addViewController("sys/toCacheManager").setViewName("system/cache/cacheManager");
+        registry.addViewController("leaveBill/toLeaveBillManager").setViewName("system/leavebill/leavebillManager");
     }
 }

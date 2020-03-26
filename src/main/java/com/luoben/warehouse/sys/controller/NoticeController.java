@@ -119,5 +119,12 @@ public class NoticeController {
         }
     }
 
+    @RequestMapping("/loadNoticeById")
+    public DataGridView loadNoticeById(Integer id){
+        Notice notice = noticeService.getById(id);
+        return  new DataGridView(notice);
+    }
+
+
 }
 

@@ -42,6 +42,19 @@ public class Constast {
     public static final Integer OPEN_FALSE = 0;
 
     /**
+     * 请假单状态
+     * 0=未提交
+     * 1=审批中
+     * 2=审批完成
+     * 3=已放弃
+     */
+    public static final String LEAVEBILL_STATE_UNSUBMIT="0";
+    public static final String LEAVEBILL_STATE_APPROVAL="1";
+    public static final String LEAVEBILL_STATE_APPROVALED="2";
+    public static final String LEAVEBILL_STATE_GIVEUP="3";
+
+
+    /**
      * 商品默认图片
      */
     public static final String IMAGES_DEFAULTGOODSIMG_PNG = "images/defaultgoodsimg.png";
