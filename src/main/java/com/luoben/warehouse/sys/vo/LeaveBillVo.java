@@ -1,6 +1,6 @@
 package com.luoben.warehouse.sys.vo;
 
-import com.luoben.warehouse.sys.domain.Leavebill;
+import com.luoben.warehouse.sys.domain.LeaveBill;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class LeaveBillVo extends Leavebill {
+public class LeaveBillVo extends LeaveBill {
 
 	private static final long serialVersionUID = 1L;
 

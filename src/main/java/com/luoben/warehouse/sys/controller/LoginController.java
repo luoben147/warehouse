@@ -4,7 +4,7 @@ import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.CircleCaptcha;
 import com.luoben.warehouse.sys.common.ActiverUser;
 import com.luoben.warehouse.sys.common.ResultObj;
-import com.luoben.warehouse.sys.common.WebUtils;
+import com.luoben.warehouse.sys.utils.WebUtils;
 import com.luoben.warehouse.sys.domain.Loginfo;
 import com.luoben.warehouse.sys.service.LoginfoService;
 import org.apache.shiro.SecurityUtils;

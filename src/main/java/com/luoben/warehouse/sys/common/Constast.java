@@ -53,7 +53,6 @@ public class Constast {
     public static final String LEAVEBILL_STATE_APPROVALED="2";
     public static final String LEAVEBILL_STATE_GIVEUP="3";
 
-
     /**
      * 商品默认图片
      */

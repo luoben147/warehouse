@@ -7,8 +7,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.luoben.warehouse.sys.common.Constast;
 import com.luoben.warehouse.sys.common.DataGridView;
 import com.luoben.warehouse.sys.common.ResultObj;
-import com.luoben.warehouse.sys.common.WebUtils;
-import com.luoben.warehouse.sys.domain.Leavebill;
+import com.luoben.warehouse.sys.utils.WebUtils;
+import com.luoben.warehouse.sys.domain.LeaveBill;
 import com.luoben.warehouse.sys.domain.User;
 import com.luoben.warehouse.sys.service.LeavebillService;
 import com.luoben.warehouse.sys.vo.LeaveBillVo;
@@ -28,7 +28,7 @@ import java.util.Arrays;
  * @since 2020-03-25
  */
 @RestController
-@RequestMapping("/leavebill")
+@RequestMapping("/leaveBill")
 public class LeavebillController {
 
     @Autowired
@@ -41,8 +41,8 @@ public class LeavebillController {
     @RequestMapping("/loadAllLeavebill")
     public DataGridView loadAllLeavebill(LeaveBillVo leaveBillVo){
 
-        IPage<Leavebill> page = new Page<>(leaveBillVo.getPage(),leaveBillVo.getLimit());
-        QueryWrapper<Leavebill> queryWrapper = new QueryWrapper<>();
+        IPage<LeaveBill> page = new Page<>(leaveBillVo.getPage(),leaveBillVo.getLimit());
+        QueryWrapper<LeaveBill> queryWrapper = new QueryWrapper<>();
         User user= (User)WebUtils.getSession().getAttribute("user");
         if(user.getType()!=Constast.USER_TYPE_SUPER){
             leaveBillVo.setUserid(user.getId());

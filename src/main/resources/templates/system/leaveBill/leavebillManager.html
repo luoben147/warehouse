@@ -161,7 +161,7 @@
         var tableIns = table.render({
             elem: "#leavebillTable",
             title: "公告数据表格",
-            url: "/leavebill/loadAllLeavebill",
+            url: "/leaveBill/loadAllLeavebill",
             toolbar: "#leavebillToolBar",
             page: true,
             height: "full-230",
@@ -256,8 +256,11 @@
                 case 'update':
                     updateLeavebill(data);
                     break;
-                case 'show':
-                    //showLeavebill(data);
+                case 'startProcess':
+                    startProcess(data);
+                    break;
+                case 'viewSpProcess':
+                    viewSpProcess(data);
                     break;
             }
             ;
@@ -266,7 +269,7 @@
         //删除
         function deleteInfo(data) {
             layer.confirm('你确定要删除【' + data.title + '】这条请假单吗？', {icon: 3, title: '提示'}, function (index) {
-                $.post("/leavebill/deleteLeavebill", {id: data.id}, function (res) {
+                $.post("/leaveBill/deleteLeavebill", {id: data.id}, function (res) {
                     if (res.code == 200) {
                         tableIns.reload({
                             //删除成功加载表格时，要重置查询条件
@@ -296,7 +299,7 @@
                             ids += "&ids=" + item.id;
                         }
                     });
-                    $.post("/leavebill/batchDeleteLeavebill", ids, function (res) {
+                    $.post("/leaveBill/batchDeleteLeavebill", ids, function (res) {
                         if (res.code == 200) {
                             //重新刷新表格
                             tableIns.reload({
@@ -328,7 +331,7 @@
                     $("#dataFrm")[0].reset();
                     form.val("dataFrm",{"title": "【"+currentUserName+"】的请假单"});
                     //重置富文本编译器的内容为空
-                    url = "/leavebill/addLeavebill";
+                    url = "/leaveBill/addLeavebill";
                 }
             });
         };
@@ -345,7 +348,7 @@
                     $("#dataFrm")[0].reset();
                     //装载新的数据
                     form.val("dataFrm", data);
-                    url="/leavebill/updateLeavebill";
+                    url="/leaveBill/updateLeavebill";
                 }
             });
         };
@@ -362,6 +365,35 @@
             })
             return false;
         });
+
+        //提交申请 启动流程  data: 请假单数据
+        function startProcess(data) {
+            layer.confirm('你确定要提交【' + data.title + '】这条请假单吗？', {icon: 3, title: '提示'}, function (index) {
+                $.post("/workFlow/startProcess", {id: data.id}, function (res) {
+                    if (res.code == 200) {
+                        tableIns.reload({});
+                    }
+                    layer.msg(res.msg);
+                });
+                layer.close(index);
+            });
+        }
+        
+        //审批进度查询
+        function viewSpProcess(data) {
+            mainIndex=layer.open({
+                title:"审批进度查询",
+                type:2,//0-4 默认为0
+                content:'/workFlow/toViewSPQuery?id='+data.id,
+                skin:'layui-layer-molv',
+                area:['800px','500px'], //设置宽高
+                closeBtn:2,  //可以写1  2  boolean   false=不显示关闭按钮
+                shadeClose:true,//点击弹出层之外的位置是否自动关闭
+                maxmin:true,//是否显示最大化和最小化的按钮
+                resize:true//设置是否允许拉伸
+            });
+        }
+        
     });
 
 </script>

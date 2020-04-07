@@ -1,7 +1,8 @@
 package com.luoben.warehouse.sys.mapper;
 
-import com.luoben.warehouse.sys.domain.Leavebill;
+import com.luoben.warehouse.sys.domain.LeaveBill;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author luoben
  * @since 2020-03-25
  */
-public interface LeavebillMapper extends BaseMapper<Leavebill> {
+@Repository
+public interface LeavebillMapper extends BaseMapper<LeaveBill> {
 
 }

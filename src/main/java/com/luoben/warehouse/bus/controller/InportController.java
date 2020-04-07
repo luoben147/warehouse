@@ -13,7 +13,7 @@ import com.luoben.warehouse.bus.service.ProviderService;
 import com.luoben.warehouse.bus.vo.InportVo;
 import com.luoben.warehouse.sys.common.DataGridView;
 import com.luoben.warehouse.sys.common.ResultObj;
-import com.luoben.warehouse.sys.common.WebUtils;
+import com.luoben.warehouse.sys.utils.WebUtils;
 import com.luoben.warehouse.sys.domain.User;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

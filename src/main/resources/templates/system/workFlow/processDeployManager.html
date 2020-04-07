@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>流程部署管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/resources/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="/resources/css/public.css" media="all"/>
+</head>
+<body class="childrenBody">
+<!-- 查询条件开始 -->
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 5px;">
+    <legend>查询条件</legend>
+</fieldset>
+<blockquote class="layui-elem-quote">
+    <form action="" method="post" id="searchFrm" lay-filter="searchFrm" class="layui-form layui-form-pane">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">部署名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="deploymentName" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-input-inline" style="text-align: center;">
+                    <button type="button" class="layui-btn" lay-submit="" lay-filter="doSearch"><span
+                            class="layui-icon layui-icon-search"></span>查询
+                    </button>
+                    <button type="reset" class="layui-btn layui-btn-warm"><span
+                            class="layui-icon layui-icon-refresh-1"></span>重置
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</blockquote>
+<!-- 查询条件结束-->
+
+
+<!-- 数据表格开始 -->
+<div>
+    <table class="layui-hide" id="workflowTable" lay-filter="workflowTable"></table>
+
+    <div id="workflowRowBar" style="display: none;">
+        <!--		<button type="button" lay-event="update" class="layui-btn layui-btn-sm"><span class="layui-icon layui-icon-edit"></span>编辑</button>-->
+        <button type="button" lay-event="delete" class="layui-btn layui-btn-sm layui-btn-danger"><span
+                class="layui-icon layui-icon-delete"></span>删除
+        </button>
+        <!--		<button type="button" lay-event="viewSPQuery" class="layui-btn layui-btn-sm"><span class="layui-icon layui-icon-about"></span>发布</button>-->
+        <button type="button" lay-event="viewShow" class="layui-btn layui-btn-sm"><span
+                class="layui-icon layui-icon-about"></span>查看流程图
+        </button>
+    </div>
+</div>
+
+
+<!-- 数据表格结束 -->
+
+
+
+<script type="text/javascript" src="/resources/layui/layui.js"></script>
+<script type="text/javascript">
+    layui.use(['jquery', 'form', 'table', 'layer'], function () {
+        var $ = layui.jquery;
+        var form = layui.form;
+        var table = layui.table;
+        var layer = layui.layer;
+
+        //加载 数据
+        var tableIns = table.render({
+            elem: '#workflowTable'
+            , url: '/workFlow/loadAllDeployment'
+            , title: '流程部署数据表'
+            , height: 'full-220'
+            , page: true
+            , cols: [ [
+                {field: 'id', title: '部署ID', align: 'center'}
+                , {field: 'name', title: '部署名称', align: 'center'}
+                , {field: 'deploymentTime', title: '部署时间', align: 'center'}
+                , {fixed: 'right', title: '操作', toolbar: '#workflowRowBar', align: 'center', width: 400}
+            ] ]
+        });
+
+        //模糊查询
+        form.on("submit(doSearch)", function (data) {
+            tableIns.reload({
+                where: data.field,
+                page: {
+                    curr: 1
+                }
+            });
+            return false;
+        });
+
+
+        //监听行工具条的事件
+        table.on("tool(workflowTable)", function (obj) {
+            var data = obj.data; //获得当前行数据
+            switch (obj.event) {
+                case 'delete':
+                    deleteWorkflow(data);
+                    break;
+                case 'viewShow':
+                    showWorkflow(data);
+                    break;
+            }
+            ;
+        });
+
+        var mainIndex;
+        var url;
+
+        //删除
+        function deleteWorkflow(data) {
+            layer.confirm('你确定要删除【' + data.id + '】这条流程部署吗?', {icon: 3, title: '提示'}, function (index) {
+                $.post("/workFlow/deleteWorkFlow", {id: data.id}, function (res) {
+                    if (res.code == 200) {
+                        tableIns.reload();
+                    }
+                    layer.msg(res.msg);
+                })
+                layer.close(index);
+            });
+        }
+
+
+        //弹出查看层
+        function showWorkflow(data) {
+            mainIndex = layer.open({
+                title: "查看【" + data.name + "】流程图",
+                type: 2,//0-4 默认为0
+                content: "/workFlow/toViewProcessImage?deploymentId=" + data.id,
+                //skin: 'layui-layer-molv',
+                area: ['1000px', '550px'], //设置宽高
+                closeBtn: 2,  //可以写1  2  boolean   false=不显示关闭按钮
+                shadeClose: true,//点击弹出层之外的位置是否自动关闭
+                maxmin: true,//是否显示最大化和最小化的按钮
+                resize: true//设置是否允许拉伸
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

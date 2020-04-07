@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.luoben.warehouse.bus.domain.Customer;
 import com.luoben.warehouse.bus.service.CustomerService;
 import com.luoben.warehouse.bus.vo.CustomerVo;
+import com.luoben.warehouse.sys.common.Constast;
 import com.luoben.warehouse.sys.common.DataGridView;
 import com.luoben.warehouse.sys.common.ResultObj;
 import org.apache.commons.lang3.StringUtils;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * <p>
@@ -112,5 +114,16 @@ public class CustomerController {
         }
     }
 
+    /**
+     * 加载所有客户的下拉列表
+     * @return
+     */
+    @RequestMapping("loadAllCustomerForSelect")
+    public DataGridView loadAllCustomerForSelect(){
+        QueryWrapper<Customer> queryWrapper = new QueryWrapper<Customer>();
+        queryWrapper.eq("available", Constast.AVAILABLE_TRUE);
+        List<Customer> list = customerService.list(queryWrapper);
+        return new DataGridView(list);
+    }
 }
 

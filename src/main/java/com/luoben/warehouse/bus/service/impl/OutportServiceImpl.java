@@ -8,7 +8,7 @@ import com.luoben.warehouse.bus.mapper.GoodsMapper;
 import com.luoben.warehouse.bus.mapper.InportMapper;
 import com.luoben.warehouse.bus.mapper.OutportMapper;
 import com.luoben.warehouse.bus.service.OutportService;
-import com.luoben.warehouse.sys.common.WebUtils;
+import com.luoben.warehouse.sys.utils.WebUtils;
 import com.luoben.warehouse.sys.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

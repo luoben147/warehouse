@@ -6,7 +6,7 @@ import com.luoben.warehouse.bus.domain.Provider;
 import com.luoben.warehouse.bus.mapper.CustomerMapper;
 import com.luoben.warehouse.bus.mapper.GoodsMapper;
 import com.luoben.warehouse.bus.mapper.ProviderMapper;
-import com.luoben.warehouse.sys.common.SpringUtil;
+import com.luoben.warehouse.sys.utils.SpringUtil;
 import com.luoben.warehouse.sys.domain.Dept;
 import com.luoben.warehouse.sys.domain.User;
 import com.luoben.warehouse.sys.mapper.DeptMapper;

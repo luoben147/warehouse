@@ -1,11 +1,15 @@
 package com.luoben.warehouse.sys.common;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * json数据实体
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class DataGridView {
 
     private Integer code = 0;

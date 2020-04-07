@@ -1,6 +1,6 @@
 package com.luoben.warehouse.sys.service;
 
-import com.luoben.warehouse.sys.domain.Leavebill;
+import com.luoben.warehouse.sys.domain.LeaveBill;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author luoben
  * @since 2020-03-25
  */
-public interface LeavebillService extends IService<Leavebill> {
+public interface LeavebillService extends IService<LeaveBill> {
 
 }

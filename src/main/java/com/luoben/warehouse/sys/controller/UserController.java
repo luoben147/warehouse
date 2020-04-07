@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.luoben.warehouse.sys.common.Constast;
 import com.luoben.warehouse.sys.common.DataGridView;
-import com.luoben.warehouse.sys.common.PinyinUtils;
+import com.luoben.warehouse.sys.utils.PinyinUtils;
 import com.luoben.warehouse.sys.common.ResultObj;
 import com.luoben.warehouse.sys.domain.Dept;
 import com.luoben.warehouse.sys.domain.Role;
